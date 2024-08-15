@@ -49,5 +49,55 @@ with st.echo():
     except Exception as e:
         st.write(f"로그인 실패: {e}")
         time.sleep(5)
+    try:
+        time.sleep(3)
+        # Select subsiciaries->campaign
+        subsiciaries_dropdown = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.ID, "ddlSubsidiary"))
+        )
+        subsiciaries_dropdown.click()
+        # Select Subsidiaries!!! (ex: "SEC")
+        option_sec = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.XPATH, "//option[@value='SEC']"))
+        )
+        option_sec.click()
+        campaign_dropdown = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.ID, "ddlPage"))
+        )
+        campaign_dropdown.click()
+        option_enquiry = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.XPATH, f"//option[text()='{selected_option}']"))
+        )
+        option_enquiry.click()
+        # from
+        from_input = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.ID, "txtDateF"))
+        )
+        from_input.send_keys(tempt_from)
+        # to
+        to_input = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.ID, "txtDateT"))
+        )
+        to_input.send_keys(tempt_to)
+        submit_button = WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.ID, "btnSubmit"))
+        )
+        submit_button.click()
+        print("Submit 버튼을 클릭했습니다.")
+        # export_to_excel 버튼 클릭
+        export_button = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.ID, "btnExport"))
+        )
+        export_button.click()
+        st.write("Export to Excel 버튼을 클릭했습니다.")
+        # 페이지 로딩을 기다림
+        WebDriverWait(driver, 7).until(
+            EC.presence_of_element_located((By.ID, "your_result_element_id"))  # 결과가 나타나는 요소의 ID를 사용
+        )
+        print(driver.page_source)
+
+    except Exception as e:
+        print(f"에러발생: {e}")
+        time.sleep(5)
 
     st.code(driver.page_source)
