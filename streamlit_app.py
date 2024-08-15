@@ -16,6 +16,8 @@ with st.echo():
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
     from webdriver_manager.core.os_manager import ChromeType
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
 
     @st.cache_resource
     def get_driver():
@@ -31,6 +33,6 @@ with st.echo():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get("http://example.com")
+    driver.get(""https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx"")
 
     st.code(driver.page_source)
