@@ -21,8 +21,8 @@ with st.echo():
         )
 
     options = Options()
-    options.add_argument("--disable-gpu")
-    options.add_argument("--headless")
+    # options.add_argument("--disable-gpu")
+    # options.add_argument("--headless")
 
     driver = get_driver()
     driver.get("https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx")
@@ -94,10 +94,11 @@ with st.echo():
         WebDriverWait(driver, 7).until(
             EC.presence_of_element_located((By.ID, "your_result_element_id"))  # 결과가 나타나는 요소의 ID를 사용
         )
-        print(driver.page_source)
+        # print(driver.page_source)
 
     except Exception as e:
         print(f"에러발생: {e}")
         time.sleep(5)
 
     # st.code(driver.page_source)
+    st.write("일단작동함")
