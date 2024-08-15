@@ -116,16 +116,16 @@ def main():
     st.write(f"Detailed OS Info: {os.uname()}")
     
     # st.code(driver.page_source)
-    goto_option_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/option_list.xlsx'
-    df_goto_op = pd.read_excel(goto_option_url)
+    goto_option_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/option_list.csv'
+    df_goto_op = pd.read_csv(goto_option_url)
     options = df_goto_op['Options'].tolist()
     
     ckcat_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/ck_PC1.csv'
     ckcat_op = pd.read_csv(ckcat_url)
     cat_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/Category_s1.csv'
     df_cat = pd.read_csv(cat_url)
-    programs_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/program_list.xlsx'
-    df_programs = pd.read_excel(programs_url)
+    programs_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/program_list.csv'
+    df_programs = pd.read_csv(programs_url)
 
     crawling(selected_option=options)
     
