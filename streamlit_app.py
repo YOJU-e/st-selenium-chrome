@@ -33,6 +33,6 @@ with st.echo():
     options.add_argument("--headless")
 
     driver = get_driver()
-    driver.get(""https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx"")
+    driver.get("https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx")
 
     st.code(driver.page_source)
