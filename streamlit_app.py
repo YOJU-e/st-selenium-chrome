@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def crawling():
+def crawling(selected_option):
     def get_driver():
         return webdriver.Chrome(
             service=Service(
@@ -110,8 +110,21 @@ def crawling():
 def main():
     st.write(f"Operating System: {os.name}")
     st.write(f"Detailed OS Info: {os.uname()}")
-    crawling()
-    st.code(driver.page_source)
+    
+    # st.code(driver.page_source)
+    goto_option_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/option_list.xlsx'
+    df_goto_op = pd.read_excel(goto_option_url)
+    options = df_goto_op['Options'].tolist()
+    
+    ckcat_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/ck_PC1.csv'
+    ckcat_op = pd.read_csv(ckcat_url)
+    cat_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/Category_s1.csv'
+    df_cat = pd.read_csv(cat_url)
+    programs_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/program_list.xlsx'
+    df_programs = pd.read_excel(programs_url)
+
+    crawling(selected_option=options)
+    
 if __name__ == "__main__":
     main()
 
