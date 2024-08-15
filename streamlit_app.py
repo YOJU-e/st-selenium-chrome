@@ -1,29 +1,28 @@
 import streamlit as st
 import time
 
-with st.echo():
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.chrome.service import Service
-    from webdriver_manager.chrome import ChromeDriverManager
-    from webdriver_manager.core.os_manager import ChromeType
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-    @st.cache_resource
-    def get_driver():
-        return webdriver.Chrome(
-            service=Service(
-                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-            ),
-            options=options,
-        )
-
-    options = Options()
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(
+        service=Service(
+            ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+        ),
+        options=options,
+    )
+def crawling():
+    # options = Options()
     # options.add_argument("--disable-gpu")
     # options.add_argument("--headless")
-
+    
     driver = get_driver()
     driver.get("https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx")
     time.sleep(5)
@@ -99,10 +98,17 @@ with st.echo():
             EC.presence_of_element_located((By.ID, "your_result_element_id"))  # 결과가 나타나는 요소의 ID를 사용
         )
         # print(driver.page_source)
-
+    
     except Exception as e:
         print(f"에러발생: {e}")
         time.sleep(5)
-
+    
     # st.code(driver.page_source)
     st.write("일단작동함")
+def main():
+    crawling()
+if __name__ == "__main__":
+    main()
+
+
+
