@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -107,6 +108,8 @@ def crawling():
     # st.code(driver.page_source)
     st.write("일단작동함")
 def main():
+    st.write(f"Operating System: {os.name}")
+    st.write(f"Detailed OS Info: {os.uname()}")
     crawling()
     st.code(driver.page_source)
 if __name__ == "__main__":
