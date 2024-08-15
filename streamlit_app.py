@@ -73,6 +73,7 @@ def crawling(selected_option):
         )
         st.write("부서선택")
         campaign_dropdown.click()
+        st.write("드롭다운 클릭 후)
         option_enquiry = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//option[text()='{selected_option}']"))
         )
@@ -105,6 +106,7 @@ def crawling(selected_option):
         WebDriverWait(driver, 7).until(
             EC.presence_of_element_located((By.ID, "your_result_element_id"))  # 결과가 나타나는 요소의 ID를 사용
         )
+        st.code(driver.page_source)
     
     except Exception as e:
         print(f"에러발생: {e}")
@@ -114,8 +116,6 @@ def crawling(selected_option):
 def main():
     st.write(f"Operating System: {os.name}")
     st.write(f"Detailed OS Info: {os.uname()}")
-    
-    # st.code(driver.page_source)
     goto_option_url = 'https://raw.githubusercontent.com/YOJU-e/st-selenium-chrome/main/data/option_list.csv'
     df_goto_op = pd.read_csv(goto_option_url)
     options = df_goto_op['Options'].tolist()
