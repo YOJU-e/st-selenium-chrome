@@ -73,7 +73,7 @@ def crawling(selected_option):
         )
         st.write("부서선택")
         campaign_dropdown.click()
-        st.write("드롭다운 클릭 후)
+        st.write("드롭다운 클릭 후")
         option_enquiry = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//option[text()='{selected_option}']"))
         )
