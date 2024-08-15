@@ -1,15 +1,5 @@
 import streamlit as st
 
-"""
-## Web scraping on Streamlit Cloud with Selenium
-
-[![Source](https://img.shields.io/badge/View-Source-<COLOR>.svg)](https://github.com/snehankekre/streamlit-selenium-chrome/)
-
-This is a minimal, reproducible example of how to scrape the web with Selenium and Chrome on Streamlit's Community Cloud.
-
-Fork this repo, and edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
-"""
-
 with st.echo():
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
@@ -35,5 +25,28 @@ with st.echo():
 
     driver = get_driver()
     driver.get("https://apps.ucsiuniversity.edu.my/enquiry/resultLogin.aspx")
+    time.sleep(5)
+    try:
+        # Enter ID, PW(!!!!환경변수로?!!!)
+        user_id = "dm"
+        password = "dm123"
+        
+        id_input = WebDriverWait(driver, 3).until(
+            EC.presence_of_element_located((By.ID, "txtUser"))
+        )
+        id_input.send_keys(user_id)
+        pw_input = WebDriverWait(driver, 3).until(
+            EC.presence_of_element_located((By.ID, "txtPwd"))
+        )
+        pw_input.send_keys(password)
+        login_button = WebDriverWait(driver, 3).until(
+            EC.element_to_be_clickable((By.ID, "cmdLogin"))
+        )
+        login_button.click()
+        time.sleep(5)
+        st.write("로그인 성공!")
+    except Exception as e:
+        st.write(f"로그인 실패: {e}")
+        time.sleep(5)
 
     st.code(driver.page_source)
