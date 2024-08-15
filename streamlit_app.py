@@ -77,7 +77,9 @@ def crawling(selected_option):
         option_enquiry = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//option[text()='{selected_option}']"))
         )
+        st.write("옵션 찾고")
         option_enquiry.click()
+        st.write("옵션 클릭")
         st.write("홈페이지 선택")
         # from
         from_input = WebDriverWait(driver, 5).until(
@@ -109,7 +111,7 @@ def crawling(selected_option):
         st.code(driver.page_source)
     
     except Exception as e:
-        print(f"에러발생: {e}")
+        st.write(f"에러발생: {e}")
         time.sleep(5)
     
     st.write("일단작동함")
