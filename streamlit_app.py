@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 with st.echo():
     from selenium import webdriver
