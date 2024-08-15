@@ -100,4 +100,4 @@ with st.echo():
         print(f"에러발생: {e}")
         time.sleep(5)
 
-    st.code(driver.page_source)
+    # st.code(driver.page_source)
