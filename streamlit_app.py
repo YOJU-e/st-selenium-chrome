@@ -64,16 +64,19 @@ with st.echo():
         campaign_dropdown = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "ddlPage"))
         )
+        st.write("부서선택")
         campaign_dropdown.click()
         option_enquiry = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//option[text()='{selected_option}']"))
         )
         option_enquiry.click()
+        st.write("홈페이지 선택")
         # from
         from_input = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "txtDateF"))
         )
         from_input.send_keys(tempt_from)
+        st.write("from 선택")
         # to
         to_input = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "txtDateT"))
@@ -82,8 +85,9 @@ with st.echo():
         submit_button = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "btnSubmit"))
         )
+        st.write("to 선택")
         submit_button.click()
-        print("Submit 버튼을 클릭했습니다.")
+        st.write("제출버튼 누름")
         # export_to_excel 버튼 클릭
         export_button = WebDriverWait(driver, 5).until(
             EC.element_to_be_clickable((By.ID, "btnExport"))
