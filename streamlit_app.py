@@ -108,6 +108,7 @@ def crawling():
     st.write("일단작동함")
 def main():
     crawling()
+    st.code(driver.page_source)
 if __name__ == "__main__":
     main()
 
